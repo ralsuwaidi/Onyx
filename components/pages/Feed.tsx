@@ -1,5 +1,7 @@
-import Image from 'next/image';
-import Card from '../ui/Card';
+"use client";
+
+import Image from "next/image";
+import Card from "../ui/Card";
 
 import {
   IonPage,
@@ -11,12 +13,13 @@ import {
   IonIcon,
   IonContent,
   IonMenuButton,
-} from '@ionic/react';
-import Notifications from './Notifications';
-import { useState } from 'react';
-import { notificationsOutline } from 'ionicons/icons';
-import { selectHomeItems } from '../../store/selectors';
-import Store from '../../store';
+} from "@ionic/react";
+import Notifications from "./Notifications";
+import { useState } from "react";
+import { notificationsOutline } from "ionicons/icons";
+import { selectHomeItems } from "@/store/selectors";
+import Store from "@/store";
+import Editor from "../Editor";
 
 type FeedCardProps = {
   title: string;
@@ -93,16 +96,14 @@ const Feed = () => {
       <IonContent className="ion-padding" fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Feed</IonTitle>
+            <IonTitle size="large">Editor</IonTitle>
           </IonToolbar>
         </IonHeader>
         <Notifications
           open={showNotifications}
           onDidDismiss={() => setShowNotifications(false)}
         />
-        {homeItems.map((i, index) => (
-          <FeedCard {...i} key={index} />
-        ))}
+        <Editor />
       </IonContent>
     </IonPage>
   );

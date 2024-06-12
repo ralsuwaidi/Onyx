@@ -11,8 +11,8 @@ import {
   IonNote,
   IonLabel,
 } from '@ionic/react';
-import Store from '../../store';
-import { selectNotifications } from '../../store/selectors';
+import Store from '@/store';
+import { selectNotifications } from '@/store/selectors';
 
 import { close } from 'ionicons/icons';
 import { type NotificationItem } from '../../mock';

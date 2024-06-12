@@ -10,13 +10,13 @@ import {
   IonPage,
   IonTitle,
   IonToolbar,
-} from '@ionic/react';
-import { useParams } from 'react-router-dom';
+} from "@ionic/react";
+import { useParams } from "react-router-dom";
 
-import Store from '../../store';
-import * as actions from '../../store/actions';
-import * as selectors from '../../store/selectors';
-import { ListItem, TodoListItem } from '../../mock';
+import Store from "@/store";
+import * as actions from "@/store/actions";
+import * as selectors from "@/store/selectors";
+import { ListItem, TodoListItem } from "../../mock";
 
 type ListDetailParams = {
   listId: string;
@@ -53,7 +53,7 @@ const ListDetail = () => {
   const lists = Store.useState(selectors.selectLists);
   const params = useParams<ListDetailParams>();
   const { listId } = params;
-  const loadedList = lists.find(l => l.id === listId);
+  const loadedList = lists.find((l) => l.id === listId);
 
   return (
     <IonPage>

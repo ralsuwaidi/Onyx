@@ -7,11 +7,11 @@ import {
   IonContent,
   IonList,
   IonToggle,
-} from '@ionic/react';
+} from "@ionic/react";
 
-import Store from '../../store';
-import * as selectors from '../../store/selectors';
-import { setSettings } from '../../store/actions';
+import Store from "@/store";
+import * as selectors from "@/store/selectors";
+import { setSettings } from "@/store/actions";
 
 const Settings = () => {
   const settings = Store.useState(selectors.selectSettings);
@@ -27,7 +27,7 @@ const Settings = () => {
           <IonItem>
             <IonToggle
               checked={settings.enableNotifications}
-              onIonChange={e => {
+              onIonChange={(e) => {
                 setSettings({
                   ...settings,
                   enableNotifications: e.target.checked,

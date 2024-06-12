@@ -1,6 +1,6 @@
-import { TodoListItem } from '../../mock';
-import Store from '../../store';
-import * as selectors from '../../store/selectors';
+import { TodoListItem } from "../../mock";
+import Store from "@/store";
+import * as selectors from "@/store/selectors";
 import {
   IonPage,
   IonHeader,
@@ -10,7 +10,7 @@ import {
   IonItem,
   IonLabel,
   IonList,
-} from '@ionic/react';
+} from "@ionic/react";
 
 const ListEntry = ({ list }: { list: TodoListItem }) => {
   return (
