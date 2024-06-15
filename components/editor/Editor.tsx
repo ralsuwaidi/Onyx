@@ -32,6 +32,7 @@ import {
   CustomEqualKeyExtension,
   HighlightMark,
 } from "./CustomEqualSignExtension";
+import CodeEnclosingExtension from "./CodeEnclosingExtension";
 
 const Editor = () => {
   useEffect(() => {
@@ -53,17 +54,18 @@ const Editor = () => {
       Text,
       BulletList,
       TaskList,
+      TaskItem.configure({
+        nested: true,
+      }),
       Bold,
       Code,
       Italic,
       ListItem,
-      CustomLink,
       Typography,
       Strike,
-      CustomEqualKeyExtension,
       Underline,
       Focus,
-      HighlightMark,
+      Highlight,
       Table.configure({
         resizable: true,
       }),
@@ -77,15 +79,18 @@ const Editor = () => {
         linkOnPaste: true,
       }),
       TableCell,
-      TaskItem.configure({
-        nested: true,
-      }),
       HardBreak,
       Heading.configure({
-        levels: [1, 2, 3],
+        levels: [1, 2, 3, 4, 5],
       }),
+
+      // custom
+      CustomLink,
+      CodeEnclosingExtension,
+      HighlightMark,
+      CustomEqualKeyExtension,
     ],
-    content: "Hello World! 🌎️",
+    content: "",
   });
 
   const setLink = () => {
@@ -96,7 +101,7 @@ const Editor = () => {
   };
 
   return (
-    <div
+    <article
       className="transition-all duration-300"
       onClick={() => editor?.commands.focus()}
     >
@@ -117,11 +122,6 @@ const Editor = () => {
                 active: editor.isActive("italic"),
               },
               {
-                label: "Strike",
-                onClick: () => editor.chain().focus().toggleStrike().run(),
-                active: editor.isActive("strike"),
-              },
-              {
                 label: "Link",
                 onClick: setLink,
                 active: editor.isActive("link"),
@@ -132,7 +132,7 @@ const Editor = () => {
       )}
 
       <EditorContent editor={editor} />
-    </div>
+    </article>
   );
 };
 
