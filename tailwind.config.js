@@ -1,3 +1,4 @@
+// tailwind.config.js
 module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -5,7 +6,11 @@ module.exports = {
   ],
   darkMode: "media",
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        highlight: "rgb(219, 253, 173)",
+      },
+    },
   },
   plugins: [require("@tailwindcss/typography")],
 };

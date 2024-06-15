@@ -1,0 +1,82 @@
+
+/* Tiptap */
+.tiptap .floating-menu {
+    display: flex;
+    background-color: #e0e0e0;
+    padding: 0.1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .tiptap .floating-menu button {
+    background-color: unset;
+    padding: 0.275rem 0.425rem;
+    border-radius: 0.3rem;
+  }
+  
+  .tiptap .floating-menu button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .tiptap .floating-menu button.is-active {
+    background-color: #ffffff;
+    color: #6a1b9a;
+  }
+  
+  .tiptap .floating-menu button.is-active:hover {
+    color: #ab47bc;
+  }
+  
+  /* Bubble menu */
+  .bubble-menu {
+    background-color: #ffffff;
+    border: 1px solid #bdbdbd;
+    border-radius: 0.7rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    padding: 0.2rem;
+  }
+  
+  .bubble-menu button {
+    background-color: unset;
+  }
+  
+  .bubble-menu button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .bubble-menu button.is-active {
+    background-color: #6a1b9a;
+  }
+  
+  .bubble-menu button.is-active:hover {
+    background-color: #ab47bc;
+  }
+  
+  /* Floating menu */
+  .floating-menu {
+    display: flex;
+    background-color: #e0e0e0;
+    padding: 0.1rem;
+    border-radius: 0.5rem;
+  }
+  
+  .floating-menu button {
+    background-color: unset;
+    padding: 0.275rem 0.425rem;
+    border-radius: 0.3rem;
+  }
+  
+  .floating-menu button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .floating-menu button.is-active {
+    background-color: #ffffff;
+    color: #6a1b9a;
+  }
+  
+  .floating-menu button.is-active:hover {
+    color: #ab47bc;
+  }
+  
+
