@@ -41,7 +41,7 @@ interface EditorProps {
 }
 
 const Editor = ({ keyboardHeight }: EditorProps) => {
-  const [headerHeight, setHeaderHeight] = useState(80); // Adjust header height as needed
+  const [headerHeight, setHeaderHeight] = useState(100); // Adjust header height as needed
 
   useEffect(() => {
     Keyboard.setAccessoryBarVisible({ isVisible: true });
@@ -65,7 +65,7 @@ const Editor = ({ keyboardHeight }: EditorProps) => {
     editorProps: {
       attributes: {
         class:
-          "prose dark:prose-invert leading-normal sm:prose-base lg:prose-lg xl:prose-2xl focus:outline-none",
+          "prose dark:prose-invert py-4 pl-4 leading-normal sm:prose-base lg:prose-lg xl:prose-2xl focus:outline-none",
       },
     },
     extensions: [
@@ -124,13 +124,13 @@ const Editor = ({ keyboardHeight }: EditorProps) => {
   return (
     <article
       className={classNames("h-screen", {
-        "max-h-[calc(100vh-80px)]": headerHeight === 80, // Default value if headerHeight is 80
-        "max-h-[calc(100vh-16px)]": headerHeight !== 80, // Assuming some other default height, you can adjust this as needed
+        "max-h-[calc(100vh-80px)]": headerHeight === 100, // Default value if headerHeight is 100
+        "max-h-[calc(100vh-16px)]": headerHeight !== 100, // Assuming some other default height, you can adjust this as needed
       })}
       onClick={() => editor?.commands.focus()}
     >
       <div
-        className="overscroll-contain overflow-auto h-full"
+        className="overscroll-contain overflow-auto h-full "
         style={{ height: `calc(100vh - ${headerHeight}px)` }}
       >
         {editor && (

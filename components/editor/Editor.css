@@ -111,3 +111,7 @@ select:checked,
 textarea:checked {
   accent-color: black;
 }
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}

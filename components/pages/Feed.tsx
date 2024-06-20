@@ -57,7 +57,7 @@ const Feed = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="ion-padding" fullscreen>
+      <IonContent className="" fullscreen>
         <Editor keyboardHeight={keyboardHeight} />
       </IonContent>
     </IonPage>
