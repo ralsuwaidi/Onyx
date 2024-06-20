@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 import BulletList from "@tiptap/extension-bullet-list";
 import HardBreak from "@tiptap/extension-hard-break";
 import Heading from "@tiptap/extension-heading";
@@ -36,13 +36,19 @@ import TaskItem from "@tiptap/extension-task-item";
 import BulletToTaskExtension from "./BulletToTaskExtension";
 import classNames from "classnames";
 import Placeholder from "@tiptap/extension-placeholder";
+import debounce from "lodash.debounce";
 
 const CustomDocument = Document.extend({
   content: "heading block*",
 });
 
-const Editor = () => {
+interface EditorProps {
+  onTitleChange: (title: string) => void;
+}
+
+const Editor = ({ onTitleChange }: EditorProps) => {
   const [headerHeight, setHeaderHeight] = useState(100); // Adjust header height as needed
+  const previousTitle = useRef("");
 
   useEffect(() => {
     Keyboard.setAccessoryBarVisible({ isVisible: true });
@@ -61,6 +67,21 @@ const Editor = () => {
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  const handleEditorUpdate = useCallback(
+    debounce((editor: any) => {
+      const content = editor.getJSON();
+      const firstNode = content.content[0];
+      if (firstNode.type === "heading") {
+        const title = firstNode.content.map((n: any) => n.text).join("");
+        if (title !== previousTitle.current) {
+          previousTitle.current = title;
+          onTitleChange(title);
+        }
+      }
+    }, 300),
+    [onTitleChange]
+  );
 
   const editor = useEditor({
     editorProps: {
@@ -122,13 +143,16 @@ const Editor = () => {
       CustomEqualKeyExtension,
     ],
     content: `
-    <h1>
-      It’ll always have a heading …
-    </h1>
-    <p>
-      … if you pass a custom document. That’s the beauty of having full control over the schema.
-    </p>
-  `,
+      <h1>
+        It’ll always have a heading …
+      </h1>
+      <p>
+        … if you pass a custom document. That’s the beauty of having full control over the schema.
+      </p>
+    `,
+    onUpdate: ({ editor }) => {
+      handleEditorUpdate(editor);
+    },
   });
 
   const setLink = () => {

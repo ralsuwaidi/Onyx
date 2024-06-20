@@ -15,35 +15,17 @@ import Editor from "../editor/Editor";
 
 const Feed = () => {
   const [showNotifications, setShowNotifications] = useState(false);
-  const [title, setTitle] = useState("Editor");
-  const [isEditing, setIsEditing] = useState(false);
+  const [title, setTitle] = useState("Title");
 
-  const handleTitleChange = (event: any) => {
-    setTitle(event.target.value);
-  };
-
-  const toggleEditing = () => {
-    setIsEditing(!isEditing);
+  const handleTitleChange = (newTitle: string) => {
+    setTitle(newTitle);
   };
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>
-            {isEditing ? (
-              <input
-                type="text"
-                value={title}
-                onChange={handleTitleChange}
-                onBlur={toggleEditing}
-                className="bg-transparent border-b border-gray-400 focus:outline-none"
-                autoFocus
-              />
-            ) : (
-              <span onClick={toggleEditing}>{title}</span>
-            )}
-          </IonTitle>
+          <IonTitle>{title}</IonTitle>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
@@ -54,8 +36,8 @@ const Feed = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-      <IonContent className="" fullscreen>
-        <Editor />
+      <IonContent fullscreen>
+        <Editor onTitleChange={handleTitleChange} />
       </IonContent>
     </IonPage>
   );
