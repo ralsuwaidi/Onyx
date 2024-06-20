@@ -40,6 +40,40 @@ const HighlightMark = Mark.create({
       },
     };
   },
+
+  addKeyboardShortcuts() {
+    return {
+      Backspace: ({ editor }) => {
+        const { state, dispatch } = editor.view;
+        const { selection } = state;
+        const { $from } = selection;
+
+        if (!selection.empty) return false;
+
+        // Get the node before the cursor
+        const nodeBefore = $from.nodeBefore;
+
+        if (nodeBefore && nodeBefore.marks) {
+          const highlightMark = nodeBefore.marks.find(
+            (mark) => mark.type.name === this.name
+          );
+
+          if (highlightMark) {
+            // Remove the highlight mark
+            const tr = state.tr.removeMark(
+              $from.pos - nodeBefore.nodeSize,
+              $from.pos,
+              this.type
+            );
+            dispatch(tr);
+            return true;
+          }
+        }
+
+        return false;
+      },
+    };
+  },
 });
 
 const CustomEqualKeyExtension = Extension.create({

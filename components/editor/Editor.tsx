@@ -36,11 +36,7 @@ import TaskItem from "@tiptap/extension-task-item";
 import BulletToTaskExtension from "./BulletToTaskExtension";
 import classNames from "classnames";
 
-interface EditorProps {
-  keyboardHeight: number;
-}
-
-const Editor = ({ keyboardHeight }: EditorProps) => {
+const Editor = () => {
   const [headerHeight, setHeaderHeight] = useState(100); // Adjust header height as needed
 
   useEffect(() => {

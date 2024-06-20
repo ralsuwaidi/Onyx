@@ -9,17 +9,14 @@ import {
   IonContent,
   IonMenuButton,
 } from "@ionic/react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { notificationsOutline } from "ionicons/icons";
-import Notifications from "./Notifications";
 import Editor from "../editor/Editor";
-// import { Keyboard } from "@capacitor/keyboard";
 
 const Feed = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [title, setTitle] = useState("Editor");
   const [isEditing, setIsEditing] = useState(false);
-  const [keyboardHeight, setKeyboardHeight] = useState(0);
 
   const handleTitleChange = (event: any) => {
     setTitle(event.target.value);
@@ -58,7 +55,7 @@ const Feed = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="" fullscreen>
-        <Editor keyboardHeight={keyboardHeight} />
+        <Editor />
       </IonContent>
     </IonPage>
   );
