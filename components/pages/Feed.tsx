@@ -1,5 +1,3 @@
-"use client";
-
 import {
   IonPage,
   IonHeader,
@@ -11,15 +9,17 @@ import {
   IonContent,
   IonMenuButton,
 } from "@ionic/react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { notificationsOutline } from "ionicons/icons";
 import Notifications from "./Notifications";
 import Editor from "../editor/Editor";
+// import { Keyboard } from "@capacitor/keyboard";
 
 const Feed = () => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [title, setTitle] = useState("Editor");
   const [isEditing, setIsEditing] = useState(false);
+  const [keyboardHeight, setKeyboardHeight] = useState(0);
 
   const handleTitleChange = (event: any) => {
     setTitle(event.target.value);
@@ -58,29 +58,7 @@ const Feed = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent className="ion-padding" fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">
-              {isEditing ? (
-                <input
-                  type="text"
-                  value={title}
-                  onChange={handleTitleChange}
-                  onBlur={toggleEditing}
-                  className="bg-transparent border-b border-gray-400 focus:outline-none"
-                  autoFocus
-                />
-              ) : (
-                <span onClick={toggleEditing}>{title}</span>
-              )}
-            </IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <Notifications
-          open={showNotifications}
-          onDidDismiss={() => setShowNotifications(false)}
-        />
-        <Editor />
+        <Editor keyboardHeight={keyboardHeight} />
       </IonContent>
     </IonPage>
   );

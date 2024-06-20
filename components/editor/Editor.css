@@ -1,82 +1,113 @@
-
 /* Tiptap */
 .tiptap .floating-menu {
-    display: flex;
-    background-color: #e0e0e0;
-    padding: 0.1rem;
-    border-radius: 0.5rem;
-  }
-  
-  .tiptap .floating-menu button {
-    background-color: unset;
-    padding: 0.275rem 0.425rem;
-    border-radius: 0.3rem;
-  }
-  
-  .tiptap .floating-menu button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .tiptap .floating-menu button.is-active {
-    background-color: #ffffff;
-    color: #6a1b9a;
-  }
-  
-  .tiptap .floating-menu button.is-active:hover {
-    color: #ab47bc;
-  }
-  
-  /* Bubble menu */
-  .bubble-menu {
-    background-color: #ffffff;
-    border: 1px solid #bdbdbd;
-    border-radius: 0.7rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    display: flex;
-    padding: 0.2rem;
-  }
-  
-  .bubble-menu button {
-    background-color: unset;
-  }
-  
-  .bubble-menu button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .bubble-menu button.is-active {
-    background-color: #6a1b9a;
-  }
-  
-  .bubble-menu button.is-active:hover {
-    background-color: #ab47bc;
-  }
-  
-  /* Floating menu */
-  .floating-menu {
-    display: flex;
-    background-color: #e0e0e0;
-    padding: 0.1rem;
-    border-radius: 0.5rem;
-  }
-  
-  .floating-menu button {
-    background-color: unset;
-    padding: 0.275rem 0.425rem;
-    border-radius: 0.3rem;
-  }
-  
-  .floating-menu button:hover {
-    background-color: #e0e0e0;
-  }
-  
-  .floating-menu button.is-active {
-    background-color: #ffffff;
-    color: #6a1b9a;
-  }
-  
-  .floating-menu button.is-active:hover {
-    color: #ab47bc;
-  }
-  
+  display: flex;
+  background-color: #e0e0e0;
+  padding: 0.1rem;
+  border-radius: 0.5rem;
+}
 
+.tiptap .floating-menu button {
+  background-color: unset;
+  padding: 0.275rem 0.425rem;
+  border-radius: 0.3rem;
+}
+
+.tiptap .floating-menu button:hover {
+  background-color: #e0e0e0;
+}
+
+.tiptap .floating-menu button.is-active {
+  background-color: #ffffff;
+  color: #6a1b9a;
+}
+
+.tiptap .floating-menu button.is-active:hover {
+  color: #ab47bc;
+}
+
+/* Bubble menu */
+.bubble-menu {
+  background-color: #ffffff;
+  border: 1px solid #bdbdbd;
+  border-radius: 0.7rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  padding: 0.2rem;
+}
+
+.bubble-menu button {
+  background-color: unset;
+}
+
+.bubble-menu button:hover {
+  background-color: #e0e0e0;
+}
+
+.bubble-menu button.is-active {
+  background-color: #6a1b9a;
+}
+
+.bubble-menu button.is-active:hover {
+  background-color: #ab47bc;
+}
+
+/* Floating menu */
+.floating-menu {
+  display: flex;
+  background-color: #e0e0e0;
+  padding: 0.1rem;
+  border-radius: 0.5rem;
+}
+
+.floating-menu button {
+  background-color: unset;
+  padding: 0.275rem 0.425rem;
+  border-radius: 0.3rem;
+}
+
+.floating-menu button:hover {
+  background-color: #e0e0e0;
+}
+
+.floating-menu button.is-active {
+  background-color: #ffffff;
+  color: #6a1b9a;
+}
+
+.floating-menu button.is-active:hover {
+  color: #ab47bc;
+}
+
+/* Ensure the task item checkbox and text are on the same line */
+/* Ensure the task list items are displayed correctly */
+
+.tiptap ul[data-type="taskList"] {
+  list-style: none;
+  margin-left: 0;
+  padding: 0;
+}
+.tiptap :first-child {
+  margin-top: 0;
+}
+.tiptap ul[data-type="taskList"] li {
+  align-items: flex-start;
+  display: flex;
+}
+.tiptap ul[data-type="taskList"] li > label {
+  flex: 0 0 auto;
+  margin-right: 0.5rem;
+  padding-top: 0.2rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+.tiptap ul[data-type="taskList"] li > div {
+  flex: 1 1 auto;
+}
+
+button:checked,
+input:checked,
+select:checked,
+textarea:checked {
+  accent-color: black;
+}

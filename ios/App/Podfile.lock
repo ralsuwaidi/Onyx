@@ -1,10 +1,10 @@
 PODS:
-  - Capacitor (6.1.0):
+  - Capacitor (5.7.6):
     - CapacitorCordova
-  - CapacitorCordova (6.1.0)
-  - CapacitorKeyboard (6.0.1):
+  - CapacitorCordova (5.7.6)
+  - CapacitorKeyboard (5.0.9):
     - Capacitor
-  - CapacitorStatusBar (6.0.0):
+  - CapacitorStatusBar (5.0.8):
     - Capacitor
 
 DEPENDENCIES:
@@ -24,10 +24,10 @@ EXTERNAL SOURCES:
     :path: "../../node_modules/@capacitor/status-bar"
 
 SPEC CHECKSUMS:
-  Capacitor: 187bd7847b6f71467015a20200a1a071be3e5f14
-  CapacitorCordova: be703980ca797f847c3356f78fa175d21c8330c2
-  CapacitorKeyboard: 5f32a712adf41e07a61caafb82cf29fb6d8ba123
-  CapacitorStatusBar: 2e4369f99166125435641b1908d05f561eaba6f6
+  Capacitor: 6e86d6f68a9348c76b6da7349ab3ee4a9edd3b9a
+  CapacitorCordova: 46df0372f7768ff20aa659ba1658b5d7315ea42a
+  CapacitorKeyboard: f2e78b60a5cb981b4ea9e511e80693ca355169bb
+  CapacitorStatusBar: 51af549cfcf35aac3ab072b062967ae5971ee485
 
 PODFILE CHECKSUM: 6b9e57bf1627306803c1f8960fddbe3482069848
 

@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import BulletList from "@tiptap/extension-bullet-list";
 import HardBreak from "@tiptap/extension-hard-break";
 import Heading from "@tiptap/extension-heading";
-import TaskItem from "@tiptap/extension-task-item";
-import TaskList from "@tiptap/extension-task-list";
 import Table from "@tiptap/extension-table";
 import { useEditor, EditorContent, BubbleMenu } from "@tiptap/react";
 import TableRow from "@tiptap/extension-table-row";
@@ -24,7 +22,7 @@ import Underline from "@tiptap/extension-underline";
 import ListItem from "@tiptap/extension-list-item";
 import Typography from "@tiptap/extension-typography";
 import Dropcursor from "@tiptap/extension-dropcursor";
-import { Keyboard } from "@capacitor/keyboard";
+import { Keyboard, KeyboardResize } from "@capacitor/keyboard";
 import "./Editor.css";
 import ButtonGroup from "../common/ButtonGroup";
 import CustomLink from "./CustomLink";
@@ -33,12 +31,34 @@ import {
   HighlightMark,
 } from "./CustomEqualSignExtension";
 import CodeEnclosingExtension from "./CodeEnclosingExtension";
+import TaskList from "@tiptap/extension-task-list";
+import TaskItem from "@tiptap/extension-task-item";
+import BulletToTaskExtension from "./BulletToTaskExtension";
+import classNames from "classnames";
 
-const Editor = () => {
+interface EditorProps {
+  keyboardHeight: number;
+}
+
+const Editor = ({ keyboardHeight }: EditorProps) => {
+  const [headerHeight, setHeaderHeight] = useState(80); // Adjust header height as needed
+
   useEffect(() => {
-    if (/iPhone|iPad|iPod/.test(navigator.userAgent)) {
-      Keyboard.setAccessoryBarVisible({ isVisible: true });
-    }
+    Keyboard.setAccessoryBarVisible({ isVisible: true });
+    Keyboard.setScroll({ isDisabled: true });
+    Keyboard.setResizeMode({ mode: KeyboardResize.Native }); // Set resize mode to none
+
+    const handleResize = () => {
+      const headerElement = document.querySelector("header");
+      if (headerElement) {
+        setHeaderHeight(headerElement.offsetHeight);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+    handleResize(); // Initial call to set height
+
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const editor = useEditor({
@@ -53,14 +73,15 @@ const Editor = () => {
       Paragraph,
       Text,
       BulletList,
-      TaskList,
-      TaskItem.configure({
-        nested: true,
-      }),
+      BulletToTaskExtension,
       Bold,
       Code,
       Italic,
       ListItem,
+      TaskList,
+      TaskItem.configure({
+        nested: true,
+      }),
       Typography,
       Strike,
       Underline,
@@ -102,36 +123,44 @@ const Editor = () => {
 
   return (
     <article
-      className="transition-all duration-300"
+      className={classNames("h-screen", {
+        "max-h-[calc(100vh-80px)]": headerHeight === 80, // Default value if headerHeight is 80
+        "max-h-[calc(100vh-16px)]": headerHeight !== 80, // Assuming some other default height, you can adjust this as needed
+      })}
       onClick={() => editor?.commands.focus()}
     >
-      {editor && (
-        <BubbleMenu tippyOptions={{ duration: 100 }} editor={editor}>
-          <ButtonGroup
-            size="md"
-            variant="default"
-            buttons={[
-              {
-                label: "Bold",
-                onClick: () => editor.chain().focus().toggleBold().run(),
-                active: editor.isActive("bold"),
-              },
-              {
-                label: "Italic",
-                onClick: () => editor.chain().focus().toggleItalic().run(),
-                active: editor.isActive("italic"),
-              },
-              {
-                label: "Link",
-                onClick: setLink,
-                active: editor.isActive("link"),
-              },
-            ]}
-          />
-        </BubbleMenu>
-      )}
+      <div
+        className="overscroll-contain overflow-auto h-full"
+        style={{ height: `calc(100vh - ${headerHeight}px)` }}
+      >
+        {editor && (
+          <BubbleMenu tippyOptions={{ duration: 0 }} editor={editor}>
+            <ButtonGroup
+              size="md"
+              variant="default"
+              buttons={[
+                {
+                  label: "Bold",
+                  onClick: () => editor.chain().focus().toggleBold().run(),
+                  active: editor.isActive("bold"),
+                },
+                {
+                  label: "Italic",
+                  onClick: () => editor.chain().focus().toggleItalic().run(),
+                  active: editor.isActive("italic"),
+                },
+                {
+                  label: "Link",
+                  onClick: setLink,
+                  active: editor.isActive("link"),
+                },
+              ]}
+            />
+          </BubbleMenu>
+        )}
 
-      <EditorContent editor={editor} />
+        <EditorContent editor={editor} />
+      </div>
     </article>
   );
 };
