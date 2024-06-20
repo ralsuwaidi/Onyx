@@ -162,8 +162,8 @@ const Editor = ({ onTitleChange }: EditorProps) => {
   return (
     <article
       className={classNames("h-screen", {
-        "max-h-[calc(100vh-80px)]": headerHeight === 120, // Default value if headerHeight is 100
-        "max-h-[calc(100vh-16px)]": headerHeight !== 120, // Assuming some other default height, you can adjust this as needed
+        "max-h-[calc(100vh-200px)]": headerHeight === 120,
+        "max-h-[calc(100vh-180px)]": headerHeight !== 120, // Assuming some other default height, you can adjust this as needed
       })}
       onClick={() => editor?.commands.focus()}
     >
@@ -198,7 +198,7 @@ const Editor = ({ onTitleChange }: EditorProps) => {
         )}
         {editor && (
           <FloatingMenu editor={editor} tippyOptions={{ duration: 0 }}>
-            <div className="floating-menu translate-y-14">
+            <div className="floating-menu translate-y-[6.5rem] md:translate-y-14">
               <button
                 onClick={() =>
                   editor.chain().focus().toggleHeading({ level: 1 }).run()
