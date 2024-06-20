@@ -35,6 +35,11 @@ import TaskList from "@tiptap/extension-task-list";
 import TaskItem from "@tiptap/extension-task-item";
 import BulletToTaskExtension from "./BulletToTaskExtension";
 import classNames from "classnames";
+import Placeholder from "@tiptap/extension-placeholder";
+
+const CustomDocument = Document.extend({
+  content: "heading block*",
+});
 
 const Editor = () => {
   const [headerHeight, setHeaderHeight] = useState(100); // Adjust header height as needed
@@ -65,7 +70,6 @@ const Editor = () => {
       },
     },
     extensions: [
-      Document,
       Paragraph,
       Text,
       BulletList,
@@ -73,6 +77,15 @@ const Editor = () => {
       Bold,
       Code,
       Italic,
+      Placeholder.configure({
+        placeholder: ({ node }) => {
+          if (node.type.name === "heading") {
+            return "What’s the title?";
+          }
+
+          return "Can you add some further context?";
+        },
+      }),
       ListItem,
       TaskList,
       TaskItem.configure({
@@ -102,12 +115,20 @@ const Editor = () => {
       }),
 
       // custom
+      CustomDocument,
       CustomLink,
       CodeEnclosingExtension,
       HighlightMark,
       CustomEqualKeyExtension,
     ],
-    content: "",
+    content: `
+    <h1>
+      It’ll always have a heading …
+    </h1>
+    <p>
+      … if you pass a custom document. That’s the beauty of having full control over the schema.
+    </p>
+  `,
   });
 
   const setLink = () => {
