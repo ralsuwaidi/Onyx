@@ -37,6 +37,7 @@ import BulletToTaskExtension from "./BulletToTaskExtension";
 import classNames from "classnames";
 import Placeholder from "@tiptap/extension-placeholder";
 import debounce from "lodash.debounce";
+import CodeBlock from "@tiptap/extension-code-block";
 
 const CustomDocument = Document.extend({
   content: "heading block*",
@@ -54,18 +55,6 @@ const Editor = ({ onTitleChange }: EditorProps) => {
     Keyboard.setAccessoryBarVisible({ isVisible: true });
     Keyboard.setScroll({ isDisabled: true });
     Keyboard.setResizeMode({ mode: KeyboardResize.Native }); // Set resize mode to none
-
-    const handleResize = () => {
-      const headerElement = document.querySelector("header");
-      if (headerElement) {
-        setHeaderHeight(headerElement.offsetHeight);
-      }
-    };
-
-    window.addEventListener("resize", handleResize);
-    handleResize(); // Initial call to set height
-
-    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleEditorUpdate = useCallback(
@@ -87,7 +76,7 @@ const Editor = ({ onTitleChange }: EditorProps) => {
     editorProps: {
       attributes: {
         class:
-          "prose dark:prose-invert py-4 pl-4 leading-normal sm:prose-base lg:prose-lg xl:prose-2xl focus:outline-none",
+          "prose dark:prose-invert py-4 px-2 leading-normal sm:prose-base lg:prose-lg xl:prose-2xl focus:outline-none",
       },
     },
     extensions: [
@@ -97,6 +86,7 @@ const Editor = ({ onTitleChange }: EditorProps) => {
       BulletToTaskExtension,
       Bold,
       Code,
+      CodeBlock,
       Italic,
       Placeholder.configure({
         placeholder: ({ node }) => {
@@ -144,7 +134,7 @@ const Editor = ({ onTitleChange }: EditorProps) => {
     ],
     content: `
       <h1>
-        It’ll always have a heading …
+        Title
       </h1>
       <p>
         … if you pass a custom document. That’s the beauty of having full control over the schema.
