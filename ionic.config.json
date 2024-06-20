@@ -1,0 +1,7 @@
+{
+  "name": "nextjs-tailwind-ionic-capacitor-starter",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "custom"
+}

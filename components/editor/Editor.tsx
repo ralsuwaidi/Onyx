@@ -3,7 +3,12 @@ import BulletList from "@tiptap/extension-bullet-list";
 import HardBreak from "@tiptap/extension-hard-break";
 import Heading from "@tiptap/extension-heading";
 import Table from "@tiptap/extension-table";
-import { useEditor, EditorContent, BubbleMenu } from "@tiptap/react";
+import {
+  useEditor,
+  EditorContent,
+  BubbleMenu,
+  FloatingMenu,
+} from "@tiptap/react";
 import TableRow from "@tiptap/extension-table-row";
 import TableHeader from "@tiptap/extension-table-header";
 import TableCell from "@tiptap/extension-table-cell";
@@ -38,6 +43,7 @@ import classNames from "classnames";
 import Placeholder from "@tiptap/extension-placeholder";
 import debounce from "lodash.debounce";
 import CodeBlock from "@tiptap/extension-code-block";
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
 
 const CustomDocument = Document.extend({
   content: "heading block*",
@@ -48,7 +54,7 @@ interface EditorProps {
 }
 
 const Editor = ({ onTitleChange }: EditorProps) => {
-  const [headerHeight, setHeaderHeight] = useState(100); // Adjust header height as needed
+  const [headerHeight, setHeaderHeight] = useState(120); // Adjust header height as needed
   const previousTitle = useRef("");
 
   useEffect(() => {
@@ -91,7 +97,7 @@ const Editor = ({ onTitleChange }: EditorProps) => {
       Placeholder.configure({
         placeholder: ({ node }) => {
           if (node.type.name === "heading") {
-            return "What’s the title?";
+            return "What's the title?";
           }
 
           return "Can you add some further context?";
@@ -106,6 +112,7 @@ const Editor = ({ onTitleChange }: EditorProps) => {
       Strike,
       Underline,
       Focus,
+      HorizontalRule,
       Highlight,
       Table.configure({
         resizable: true,
@@ -137,7 +144,7 @@ const Editor = ({ onTitleChange }: EditorProps) => {
         Title
       </h1>
       <p>
-        … if you pass a custom document. That’s the beauty of having full control over the schema.
+        … if you pass a custom document. That's the beauty of having full control over the schema.
       </p>
     `,
     onUpdate: ({ editor }) => {
@@ -155,8 +162,8 @@ const Editor = ({ onTitleChange }: EditorProps) => {
   return (
     <article
       className={classNames("h-screen", {
-        "max-h-[calc(100vh-80px)]": headerHeight === 100, // Default value if headerHeight is 100
-        "max-h-[calc(100vh-16px)]": headerHeight !== 100, // Assuming some other default height, you can adjust this as needed
+        "max-h-[calc(100vh-80px)]": headerHeight === 120, // Default value if headerHeight is 100
+        "max-h-[calc(100vh-16px)]": headerHeight !== 120, // Assuming some other default height, you can adjust this as needed
       })}
       onClick={() => editor?.commands.focus()}
     >
@@ -188,6 +195,38 @@ const Editor = ({ onTitleChange }: EditorProps) => {
               ]}
             />
           </BubbleMenu>
+        )}
+        {editor && (
+          <FloatingMenu editor={editor} tippyOptions={{ duration: 0 }}>
+            <div className="floating-menu translate-y-14">
+              <button
+                onClick={() =>
+                  editor.chain().focus().toggleHeading({ level: 1 }).run()
+                }
+                className={
+                  editor.isActive("heading", { level: 1 }) ? "is-active" : ""
+                }
+              >
+                H1
+              </button>
+              <button
+                onClick={() =>
+                  editor.chain().focus().toggleHeading({ level: 2 }).run()
+                }
+                className={
+                  editor.isActive("heading", { level: 2 }) ? "is-active" : ""
+                }
+              >
+                H2
+              </button>
+              <button
+                onClick={() => editor.chain().focus().toggleBulletList().run()}
+                className={editor.isActive("bulletList") ? "is-active" : ""}
+              >
+                Bullet list
+              </button>
+            </div>
+          </FloatingMenu>
         )}
 
         <EditorContent editor={editor} />

@@ -17,7 +17,9 @@
     "presync": "npm run build",
     "sync": "npx cap sync",
     "android": "npx cap run android",
-    "ios": "npx cap run ios"
+    "ios": "npx cap run ios",
+    "ionic:build": "npm run build",
+    "ionic:serve": "npm run serve"
   },
   "dependencies": {
     "@capacitor/android": "^5.7.0",
@@ -40,6 +42,7 @@
     "@tiptap/extension-hard-break": "2.4.0",
     "@tiptap/extension-heading": "2.4.0",
     "@tiptap/extension-highlight": "2.4.0",
+    "@tiptap/extension-horizontal-rule": "2.4.0",
     "@tiptap/extension-italic": "2.4.0",
     "@tiptap/extension-link": "2.4.0",
     "@tiptap/extension-list-item": "2.4.0",
