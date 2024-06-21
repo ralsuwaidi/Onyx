@@ -8,7 +8,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        highlight: "rgb(219, 253, 173)",
+        highlight: "var(--highlight-color)",
       },
     },
   },

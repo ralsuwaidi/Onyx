@@ -1,4 +1,3 @@
-import { NodeViewProps, NodeViewWrapper } from "@tiptap/react";
 import { Link as TiptapLink } from "@tiptap/extension-link";
 import { markInputRule } from "@tiptap/core";
 

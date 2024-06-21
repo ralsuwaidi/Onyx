@@ -24,7 +24,7 @@ const Feed = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar className="border-b-1 dark:border-black ">
           <IonTitle>{title}</IonTitle>
           <IonButtons slot="start">
             <IonMenuButton />

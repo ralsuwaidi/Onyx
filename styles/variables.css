@@ -74,6 +74,27 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /* Add floating menu colors */
+  --floating-menu-bg: #e0e0e0;
+  --floating-menu-button-hover-bg: #e0e0e0;
+  --floating-menu-button-active-bg: #ffffff;
+  --floating-menu-button-active-color: #6a1b9a;
+  --floating-menu-button-active-hover-color: #ab47bc;
+
+  /* Bubble menu colors for light mode */
+  --bubble-menu-bg: #ffffff;
+  --bubble-menu-border: #bdbdbd;
+  --bubble-menu-button-hover-bg: #e0e0e0;
+  --bubble-menu-button-active-bg: #6a1b9a;
+  --bubble-menu-button-active-hover-bg: #ab47bc;
+
+  /* Tasklist checkbox and border colors for light mode */
+  --tasklist-checkbox-color: black;
+  --tasklist-checkbox-border: #000000; /* Black border for light mode */
+  --tasklist-checkbox-bg: #ffffff;
+
+  --highlight-color: rgb(219, 253, 173); /* Light mode highlight color */
 }
 
 @media (prefers-color-scheme: dark) {
@@ -145,6 +166,26 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-light-contrast-rgb: 255, 255, 255;
     --ion-color-light-shade: #1e2023;
     --ion-color-light-tint: #383a3e;
+
+    /* Dark mode floating menu colors */
+    --floating-menu-bg: #333333;
+    --floating-menu-button-hover-bg: #444444;
+    --floating-menu-button-active-bg: #555555;
+    --floating-menu-button-active-color: #ffffff;
+    --floating-menu-button-active-hover-color: #dddddd;
+
+    /* Bubble menu colors for dark mode */
+    --bubble-menu-bg: #333333;
+    --bubble-menu-border: #444444;
+    --bubble-menu-button-hover-bg: #444444;
+    --bubble-menu-button-active-bg: #555555;
+    --bubble-menu-button-active-hover-bg: #666666;
+
+    --tasklist-checkbox-color: white;
+    --tasklist-checkbox-border: #ffffff; /* White border for dark mode */
+    --tasklist-checkbox-bg: #333333;
+
+    --highlight-color: rgb(46, 80, 115); /* Dark mode highlight color */
   }
 
   /*
@@ -153,7 +194,7 @@ http://ionicframework.com/docs/theming/ */
    */
 
   .ios body {
-    --ion-background-color: #000000;
+    --ion-background-color: rgb(28, 30, 31);
     --ion-background-color-rgb: 0, 0, 0;
 
     --ion-text-color: #ffffff;
@@ -179,7 +220,7 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-step-900: #e6e6e6;
     --ion-color-step-950: #f2f2f2;
 
-    --ion-toolbar-background: #0d0d0d;
+    --ion-toolbar-background: rgb(28, 30, 31);
 
     --ion-item-background: #000000;
 
@@ -192,7 +233,7 @@ http://ionicframework.com/docs/theming/ */
    */
 
   .md body {
-    --ion-background-color: #121212;
+    --ion-background-color: rgb(28, 30, 31);
     --ion-background-color-rgb: 18, 18, 18;
 
     --ion-text-color: #ffffff;
