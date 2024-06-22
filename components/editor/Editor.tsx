@@ -3,7 +3,6 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import "./editor.css";
 import extensions from "./extensions";
 import { useKeyboardSetup, useEditorTitleUpdate } from "./hooks";
-import EditorToolbar from "./extension/EditorToolbar";
 import FloatingMenu from "./extension/FloatingMenu";
 import BubbleMenu from "./extension/BubbleMenu";
 import { saveEditorContent, loadEditorContent } from "./preferences";
@@ -68,7 +67,6 @@ const Editor = ({ onTitleChange }: EditorProps) => {
       >
         <div id="top-marker" className="h-1"></div>
         <div className="mx-2">
-          {isAtTop && <EditorToolbar editor={editor} setLink={setLink} />}
           {editor && <BubbleMenu editor={editor} setLink={setLink} />}
           {editor && <FloatingMenu editor={editor} />}
 

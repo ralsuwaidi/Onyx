@@ -1,15 +1,13 @@
-// BulletToTaskExtension.ts
+// TaskListInputRule.ts
 import { textblockTypeInputRule } from "@tiptap/core";
 import TaskList from "@tiptap/extension-task-list";
 import TaskItem from "@tiptap/extension-task-item";
-import BulletList from "@tiptap/extension-bullet-list";
-import ListItem from "@tiptap/extension-list-item";
 
 const taskInputRegex = /(?:^|\s)- \[\] $/;
 
-const BulletToTaskExtension = BulletList.extend({
+const TaskItemExtension = TaskItem.extend({
   addExtensions() {
-    return [TaskList, TaskItem, ListItem];
+    return [TaskList, TaskItem];
   },
 
   addInputRules() {
@@ -17,10 +15,10 @@ const BulletToTaskExtension = BulletList.extend({
       textblockTypeInputRule({
         find: taskInputRegex,
         type: this.editor.schema.nodes.taskItem,
-        getAttributes: () => ({ checked: false }),
+        getAttributes: () => ({}),
       }),
     ];
   },
 });
 
-export default BulletToTaskExtension;
+export default TaskItemExtension;

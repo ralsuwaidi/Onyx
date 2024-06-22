@@ -77,11 +77,12 @@
   flex: 1 1 auto;
 }
 
-.tasklist button:checked,
-input:checked {
+.tiptap ul[data-type="taskList"] input[type="checkbox"]:checked {
   accent-color: var(--tasklist-checkbox-color);
   border: 2px solid var(--tasklist-checkbox-border); /* Use the border variable */
-  background-color: var(--tasklist-checkbox-bg); /* Ensure background is set */
+  background-color: var(
+    --tasklist-checkbox-color
+  ); /* Ensure background is set */
 }
 
 .scrollbar-hide::-webkit-scrollbar {

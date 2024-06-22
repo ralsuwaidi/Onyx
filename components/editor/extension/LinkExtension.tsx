@@ -3,7 +3,7 @@ import { markInputRule } from "@tiptap/core";
 
 const linkInputRegex = /\[(.*?)\]\((.*?)\)$/;
 
-const CustomLink = TiptapLink.extend({
+const LinkExtension = TiptapLink.extend({
   addInputRules() {
     return [
       markInputRule({
@@ -18,4 +18,4 @@ const CustomLink = TiptapLink.extend({
   },
 });
 
-export default CustomLink;
+export default LinkExtension;

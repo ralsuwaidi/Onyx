@@ -6,7 +6,6 @@ import TableRow from "@tiptap/extension-table-row";
 import TableHeader from "@tiptap/extension-table-header";
 import TableCell from "@tiptap/extension-table-cell";
 import OrderedList from "@tiptap/extension-ordered-list";
-import Link from "@tiptap/extension-link";
 import Paragraph from "@tiptap/extension-paragraph";
 import Text from "@tiptap/extension-text";
 import Document from "@tiptap/extension-document";
@@ -21,9 +20,8 @@ import ListItem from "@tiptap/extension-list-item";
 import Typography from "@tiptap/extension-typography";
 import Dropcursor from "@tiptap/extension-dropcursor";
 import Placeholder from "@tiptap/extension-placeholder";
-import CodeBlock from "@tiptap/extension-code-block";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
-import CustomLink from "./extension/CustomLink";
+import LinkExtension from "./extension/LinkExtension";
 import {
   CustomEqualKeyExtension,
   HighlightMark,
@@ -31,20 +29,32 @@ import {
 import CodeEnclosingExtension from "./extension/CodeEnclosingExtension";
 import TaskList from "@tiptap/extension-task-list";
 import TaskItem from "@tiptap/extension-task-item";
-import BulletToTaskExtension from "./extension/BulletToTaskExtension";
+import MarkdownPaste from "./extension/MarkdownPaste";
+import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
+import css from "highlight.js/lib/languages/css";
+import js from "highlight.js/lib/languages/javascript";
+import ts from "highlight.js/lib/languages/typescript";
+import html from "highlight.js/lib/languages/xml";
+
+import { lowlight } from "lowlight";
 
 const CustomDocument = Document.extend({
   content: "heading block*",
 });
 
+lowlight.registerLanguage("html", html);
+lowlight.registerLanguage("css", css);
+lowlight.registerLanguage("javascript", js);
+lowlight.registerLanguage("ts", ts);
+
 const extensions = [
   Paragraph,
   Text,
-  BulletList,
-  BulletToTaskExtension,
   Bold,
   Code,
-  CodeBlock,
+  CodeBlockLowlight.configure({
+    lowlight,
+  }),
   Italic,
   Placeholder.configure({
     placeholder: ({ node }) => {
@@ -73,11 +83,6 @@ const extensions = [
   TableHeader,
   Dropcursor,
   OrderedList,
-  Link.configure({
-    openOnClick: true,
-    autolink: true,
-    linkOnPaste: true,
-  }),
   TableCell,
   HardBreak,
   Heading.configure({
@@ -85,8 +90,15 @@ const extensions = [
   }),
 
   // custom
+  // BulletListExtension,
+  BulletList,
+  MarkdownPaste,
   CustomDocument,
-  CustomLink,
+  LinkExtension.configure({
+    openOnClick: true,
+    autolink: true,
+    linkOnPaste: true,
+  }),
   CodeEnclosingExtension,
   HighlightMark,
   CustomEqualKeyExtension,

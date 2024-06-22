@@ -181,7 +181,7 @@ http://ionicframework.com/docs/theming/ */
     --bubble-menu-button-active-bg: #555555;
     --bubble-menu-button-active-hover-bg: #666666;
 
-    --tasklist-checkbox-color: white;
+    --tasklist-checkbox-color: var(--ion-background-color);
     --tasklist-checkbox-border: #ffffff; /* White border for dark mode */
     --tasklist-checkbox-bg: #333333;
 
