@@ -1,19 +1,20 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
-import "./editor.css";
-import extensions from "./extensions";
-import { useKeyboardSetup, useEditorTitleUpdate } from "./hooks";
-import FloatingMenu from "./extension/FloatingMenu";
-import BubbleMenu from "./extension/BubbleMenu";
-import { saveEditorContent, loadEditorContent } from "./preferences";
+import "@/styles/editor.css";
+import extensions from "../editor/configs/extensionsConfig";
+import { useKeyboardSetup } from "@/hooks/useKeyboardSetup";
+import { useEditorTitleUpdate } from "@/hooks/useEditorTitleUpdate";
+import { loadEditorContent, saveEditorContent } from "@/hooks/utils";
+import BubbleMenu from "@/editor/extensions/BubbleMenu";
+import FloatingMenu from "@/editor/extensions/FloatingMenu";
 
 interface EditorProps {
   onTitleChange: (title: string) => void;
 }
 
 const Editor = ({ onTitleChange }: EditorProps) => {
-  const [headerHeight, setHeaderHeight] = useState(120); // Adjust header height as needed
-  const [isAtTop, setIsAtTop] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(120);
+  const editorContainerRef = useRef<HTMLDivElement>(null);
 
   useKeyboardSetup();
 
@@ -25,10 +26,10 @@ const Editor = ({ onTitleChange }: EditorProps) => {
       },
     },
     extensions,
-    content: "", // Initialize with empty content
+    content: "",
     onUpdate: ({ editor }) => {
       const json = editor.getJSON();
-      saveEditorContent(JSON.stringify(json)); // Save content to Capacitor Preferences
+      saveEditorContent(JSON.stringify(json));
     },
   });
 
@@ -52,6 +53,20 @@ const Editor = ({ onTitleChange }: EditorProps) => {
     }
   };
 
+  const handleFocus = () => {
+    if (editor && editor.view) {
+      const { state, view } = editor;
+      const { from } = state.selection;
+      const startCoords = view.coordsAtPos(from);
+      const container = editorContainerRef.current;
+      if (container) {
+        const containerRect = container.getBoundingClientRect();
+        const offset = startCoords.top - containerRect.top - 100;
+        container.scrollTop += offset;
+      }
+    }
+  };
+
   return (
     <article
       className={`h-screen ${
@@ -62,15 +77,15 @@ const Editor = ({ onTitleChange }: EditorProps) => {
       onClick={() => editor?.commands.focus()}
     >
       <div
-        className="overscroll-contain overflow-auto h-full "
+        ref={editorContainerRef}
+        className="overscroll-contain overflow-auto h-full"
         style={{ height: `calc(100vh - ${headerHeight}px)` }}
       >
         <div id="top-marker" className="h-1"></div>
-        <div className="mx-2">
+        <div className="mx-2 mb-64">
           {editor && <BubbleMenu editor={editor} setLink={setLink} />}
           {editor && <FloatingMenu editor={editor} />}
-
-          <EditorContent editor={editor} />
+          <EditorContent editor={editor} onFocus={handleFocus} />
         </div>
       </div>
     </article>

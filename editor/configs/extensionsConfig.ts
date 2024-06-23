@@ -21,15 +21,15 @@ import Typography from "@tiptap/extension-typography";
 import Dropcursor from "@tiptap/extension-dropcursor";
 import Placeholder from "@tiptap/extension-placeholder";
 import HorizontalRule from "@tiptap/extension-horizontal-rule";
-import LinkExtension from "./extension/LinkExtension";
+import LinkExtension from "@/editor/extensions/Link";
 import {
   CustomEqualKeyExtension,
   HighlightMark,
-} from "./extension/CustomEqualSignExtension";
-import CodeEnclosingExtension from "./extension/CodeEnclosingExtension";
+} from "@/editor/extensions/Highlight";
+import CodeEnclosing from "@/editor/extensions/CodeEnclosing";
 import TaskList from "@tiptap/extension-task-list";
 import TaskItem from "@tiptap/extension-task-item";
-import MarkdownPaste from "./extension/MarkdownPaste";
+import MarkdownPaste from "@/editor/extensions/MarkdownPaste";
 import CodeBlockLowlight from "@tiptap/extension-code-block-lowlight";
 import css from "highlight.js/lib/languages/css";
 import js from "highlight.js/lib/languages/javascript";
@@ -99,7 +99,7 @@ const extensions = [
     autolink: true,
     linkOnPaste: true,
   }),
-  CodeEnclosingExtension,
+  CodeEnclosing,
   HighlightMark,
   CustomEqualKeyExtension,
 ];

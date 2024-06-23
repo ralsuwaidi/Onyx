@@ -1,14 +1,5 @@
-import { useEffect, useState, useCallback, useRef } from "react";
+import { useEffect, useCallback, useRef } from "react";
 import debounce from "lodash.debounce";
-import { Keyboard, KeyboardResize } from "@capacitor/keyboard";
-
-export const useKeyboardSetup = () => {
-  useEffect(() => {
-    Keyboard.setAccessoryBarVisible({ isVisible: true });
-    Keyboard.setScroll({ isDisabled: true });
-    Keyboard.setResizeMode({ mode: KeyboardResize.Native }); // Set resize mode to none
-  }, []);
-};
 
 export const useEditorTitleUpdate = (
   editor: any,

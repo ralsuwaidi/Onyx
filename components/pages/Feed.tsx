@@ -11,7 +11,7 @@ import {
 } from "@ionic/react";
 import { useState } from "react";
 import { notificationsOutline } from "ionicons/icons";
-import Editor from "../editor/Editor";
+import Editor from "../Editor";
 
 const Feed = () => {
   const [showNotifications, setShowNotifications] = useState(false);

@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { lists } from "@/mock";
 
-const App = dynamic(() => import("@/components/AppShell"), {
+const App = dynamic(() => import("@/components/wrappers/AppShell"), {
   ssr: false,
 });
 

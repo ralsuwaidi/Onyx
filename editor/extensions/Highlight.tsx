@@ -76,7 +76,7 @@ const HighlightMark = Mark.create({
   },
 });
 
-const CustomEqualKeyExtension = Extension.create({
+const HighlightExtension = Extension.create({
   name: "customEqualKey",
 
   addKeyboardShortcuts() {
@@ -120,4 +120,4 @@ const CustomEqualKeyExtension = Extension.create({
   },
 });
 
-export { CustomEqualKeyExtension, HighlightMark };
+export { HighlightExtension as CustomEqualKeyExtension, HighlightMark };

@@ -17,7 +17,7 @@ const handleEnclosingCharacters = (editor: Editor, char: string) => {
     .run();
 };
 
-const CodeEnclosingExtension = Extension.create({
+const CodeEnclosing = Extension.create({
   name: "codeEnclosing",
 
   addKeyboardShortcuts() {
@@ -34,4 +34,4 @@ const CodeEnclosingExtension = Extension.create({
   },
 });
 
-export default CodeEnclosingExtension;
+export default CodeEnclosing;

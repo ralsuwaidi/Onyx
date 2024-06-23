@@ -4,8 +4,8 @@ import { StatusBar, Style } from "@capacitor/status-bar";
 import { IonReactRouter } from "@ionic/react-router";
 import { Route } from "react-router-dom";
 
-import Tabs from "./pages/Tabs";
-import Feed from "./pages/Feed";
+import Tabs from "../pages/Tabs";
+import Feed from "../pages/Feed";
 
 setupIonicReact({});
 
